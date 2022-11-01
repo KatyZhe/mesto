@@ -12,4 +12,6 @@
 
 **Ссылка на проект в GitHub**
 
+https://katyzhe.github.io/mesto/
+
 
