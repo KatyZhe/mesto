@@ -1,0 +1,23 @@
+.popup__user-name {
+  font-family: 'Inter', Verdana, Tahoma, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 36px 13px;
+}
+
+.popup__user-name::placeholder {
+  color: #000;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__user-name {
+    min-width: 238px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .popup__user-name {
+    min-width: 358px;
+  }
+}

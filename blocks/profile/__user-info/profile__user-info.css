@@ -1,0 +1,11 @@
+.profile__user-info {
+  margin: 0;
+  font-family: 'Inter', Verdana, Tahoma, sans-serif;
+  font-weight: 400;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
