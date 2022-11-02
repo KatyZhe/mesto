@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 1023px) {
   .profile__user-name {
     font-size: 27px;
     line-height: 33px;
@@ -17,7 +17,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .profile__user-name {
     font-size: 42px;
     line-height: 48px;

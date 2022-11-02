@@ -2,7 +2,7 @@
   padding: 0;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 1023px) {
   .profile__button-img {
     width: 8px;
     height: 8px;
@@ -10,7 +10,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .profile__button-img {
     width: 10px;
     height: 10px;

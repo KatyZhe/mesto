@@ -4,25 +4,19 @@ let closeElement = popupElement.querySelector('.popup__close');
 let saveChanges = popupElement.querySelector('.popup__submit');
 
 function openPopup() {
-  buttonElement.addEventListener('click', () => {
-    popupElement.classList.add('popup_opened');
-  });
+  popupElement.classList.add('popup_opened');
 };
 
 openPopup();
 
 function closePopup() {
-  closeElement.addEventListener('click', () => {
-    popupElement.classList.remove('popup_opened');
-  });
+  popupElement.classList.remove('popup_opened');
 };
 
 closePopup();
 
 function save() {
-  saveChanges.addEventListener('click', () => {
-    popupElement.classList.remove('popup_opened');
-  });
+  popupElement.classList.remove('popup_opened');
 };
 
 save();
@@ -36,12 +30,6 @@ let jobProfile = document.querySelector('.profile__user-info');
 let nameInput = document.querySelector('.popup__user-name');
 let jobInput = document.querySelector('.popup__user-info');
 
-buttonElement.addEventListener('.click', function () {
-  openPopup();
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-});
-
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 
@@ -53,5 +41,15 @@ function formSubmitHandler(evt) {
   jobProfile.textContent = jobInput.value; // Выберите элементы, куда должны быть вставлены значения полей и вставьте новые значения с помощью textContent
   save();
 };
+
+buttonElement.addEventListener('.click', function () {
+  openPopup();
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+});
+
+buttonElement.addEventListener('click', openPopup);
+
+closeElement.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
