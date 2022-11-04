@@ -4,12 +4,11 @@
   font-weight: 400;
   text-align: center;
   color: #FFF;
+  border-radius: 2px;
 }
 
 .popup__submit:hover {
-  background: #000000;
   opacity: 0.8;
-  border-radius: 2px;
   cursor: pointer;
 }
 

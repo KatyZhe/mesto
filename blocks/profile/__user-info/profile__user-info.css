@@ -9,3 +9,15 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+  .profile__user-info {
+    max-width: 250px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__user-info {
+    max-width: 500px;
+  }
+}
