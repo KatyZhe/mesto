@@ -5,6 +5,7 @@
   text-align: center;
   color: #FFF;
   border-radius: 2px;
+  border: none;
 }
 
 .popup__submit:hover {

@@ -96,14 +96,15 @@
 
   <div class="popup">
     <div class="popup__container">
+      <button type="button" class="popup__close">
+        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
+      </button>
       <form class="popup__form" name="form">
-        <button type="button" class="popup__close">
-          <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
-        </button>
         <fieldset class="popup__input-container">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <input type="text" class="popup__item popup__item_name" name="inputname" placeholder="Жак-Ив Кусто">
-          <input type="text" class="popup__item popup__item_job" name="inputjob" placeholder="Исследователь океана">
+          <input type="text" class="popup__item popup__item_name_input" name="inputname" placeholder="Жак-Ив Кусто">
+          <input type="text" class="popup__item popup__item_job_input" name="inputjob"
+            placeholder="Исследователь океана">
         </fieldset>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
