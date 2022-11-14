@@ -33,60 +33,49 @@
     </section>
     <section class="elements-section">
       <ul class="elements">
+        <!--
         <li class="element">
           <img src="./images/kirill-pershin-karachaevsk.png" class="element__image" alt="Карачаевск">
           <div class="element__text">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-elbrus.png" class="element__image" alt="Эльбрус">
           <div class="element__text">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-dombay.png" class="element__image" alt="Домбай">
           <div class="element__text">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-elbrus.png" class="element__image" alt="Гора Эльбрус">
           <div class="element__text">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-dombay.png" class="element__image" alt="Домбай">
           <div class="element__text">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kirill-pershin-karachaevsk.png" class="element__image" alt="Карачаево-Черкесия">
           <div class="element__text">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button class="element__like" type="button">
-              <img src="./images/like-img.svg" alt="нравится" class="element__like-img">
-            </button>
+            <button class="element__like" type="button"></button>
           </div>
-        </li>
+        </li>-->
       </ul>
     </section>
   </main>
@@ -94,7 +83,7 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_profile">
     <div class="popup__container">
       <button type="button" class="popup__close">
         <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
@@ -111,7 +100,45 @@
     </div>
   </div>
 
+  <div class="popup popup_addplace">
+    <div class="popup__container">
+      <button type="button" class="popup__close">
+        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
+      </button>
+      <form class="popup__form" name="form">
+        <fieldset class="popup__input-container">
+          <h2 class="popup__heading">Новое место</h2>
+          <input type="text" class="popup__item popup__item_title_input" name="inputname" placeholder="Название">
+          <input type="text" class="popup__item popup__item_place_input" name="inputplace"
+            placeholder="Ссылка на картинку">
+        </fieldset>
+        <button type="submit" class="popup__submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_large-img">
+    <div class="popup__container-image">
+      <button type="button" class="popup__close">
+        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
+      </button>
+      <img src="" class="popup__image" alt="увеличенное изображение места">
+    </div>
+  </div>
+
+  <template id="additional_card">
+    <li class="element">
+      <img src="" class="element__image" alt="фотография места">
+      <div class="element__text">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button"></button>
+        <button type="button" class="element__delete"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="./scripts/index.js"></script>
+
 </body>
 
 </html>
