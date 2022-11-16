@@ -20,62 +20,15 @@
         <div class="profile__info">
           <div class="profile__name">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button">
-              <img src="./images/edit-button.svg" alt="кнопка изменить" class="profile__edit-img">
-            </button>
+            <button type="button" class="profile__edit-button" aria-label="Изменить профиль"></button>
           </div>
           <p class="profile__user-info">Исследователь океана</p>
         </div>
       </div>
-      <button type="button" class="profile__add-button">
-        <img src="./images/add-img.svg" alt="кнопка добавить" class="profile__add-img">
-      </button>
+      <button type="button" class="profile__add-button" aria-label="Добавить место"></button>
     </section>
     <section class="elements-section">
       <ul class="elements">
-        <!--
-        <li class="element">
-          <img src="./images/kirill-pershin-karachaevsk.png" class="element__image" alt="Карачаевск">
-          <div class="element__text">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kirill-pershin-elbrus.png" class="element__image" alt="Эльбрус">
-          <div class="element__text">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kirill-pershin-dombay.png" class="element__image" alt="Домбай">
-          <div class="element__text">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kirill-pershin-elbrus.png" class="element__image" alt="Гора Эльбрус">
-          <div class="element__text">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kirill-pershin-dombay.png" class="element__image" alt="Домбай">
-          <div class="element__text">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kirill-pershin-karachaevsk.png" class="element__image" alt="Карачаево-Черкесия">
-          <div class="element__text">
-            <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </li>-->
       </ul>
     </section>
   </main>
@@ -85,15 +38,12 @@
 
   <div class="popup popup_profile">
     <div class="popup__container">
-      <button type="button" class="popup__close">
-        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
-      </button>
-      <form class="popup__form" name="form">
+      <button type="button" class="popup__close"></button>
+      <form class="popup__form popup__profile-form" name="form">
         <fieldset class="popup__input-container">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <input type="text" class="popup__item popup__item_name_input" name="inputname" placeholder="Жак-Ив Кусто">
-          <input type="text" class="popup__item popup__item_job_input" name="inputjob"
-            placeholder="Исследователь океана">
+          <input type="text" class="popup__item popup__item_name_input" name="input-name" placeholder="Имя" required>
+          <input type="text" class="popup__item popup__item_job_input" name="input-job" placeholder="О себе" required>
         </fieldset>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
@@ -102,15 +52,14 @@
 
   <div class="popup popup_addplace">
     <div class="popup__container">
-      <button type="button" class="popup__close">
-        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
-      </button>
+      <button type="button" class="popup__close"></button>
       <form class="popup__form" name="form">
         <fieldset class="popup__input-container">
           <h2 class="popup__heading">Новое место</h2>
-          <input type="text" class="popup__item popup__item_title_input" name="inputname" placeholder="Название">
-          <input type="text" class="popup__item popup__item_place_input" name="inputplace"
-            placeholder="Ссылка на картинку">
+          <input type="text" class="popup__item popup__item_title_input" name="input-name" placeholder="Название"
+            required>
+          <input type="url" class="popup__item popup__item_place_input" name="input-place"
+            placeholder="Ссылка на картинку" required>
         </fieldset>
         <button type="submit" class="popup__submit">Создать</button>
       </form>
@@ -119,9 +68,7 @@
 
   <div class="popup popup_large-img">
     <div class="popup__container-image">
-      <button type="button" class="popup__close">
-        <img src="./images/popup__close-img.svg" alt="кнопка закрыть форму" class="popup__close-img">
-      </button>
+      <button type="button" class="popup__close"></button>
       <img src="popup__image" class="popup__image" alt="увеличенное изображение места">
     </div>
   </div>
@@ -131,13 +78,13 @@
       <img src="popup__image" class="element__image" alt="фотография места">
       <div class="element__text">
         <h2 class="element__title"></h2>
-        <button class="element__like" type="button"></button>
-        <button type="button" class="element__delete"></button>
+        <button class="element__like" type="button" aria-label="Нравится"></button>
+        <button type="button" class="element__delete" aria-label="Закрыть"></button>
       </div>
     </li>
   </template>
 
-  <script src="./scripts/index.js"></script>
+  <script defer src="./scripts/index.js"></script>
 
 </body>
 
