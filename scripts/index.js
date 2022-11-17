@@ -1,8 +1,7 @@
-const popup = document.querySelectorAll('.popup');
 const editProfileBtn = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_profile');
 const popupAddForm = document.querySelector('.popup_addplace');
-const popupLarge = document.querySelector('.popup_large-img'); //Это сам попап
+const popupLarge = document.querySelector('.popup_large-img');
 const popupEditCloseBtn = popupEditProfile.querySelector('.popup__close');
 const popupAddCloseBtn = popupAddForm.querySelector('.popup__close');
 const popupImgCloseBtn = popupLarge.querySelector('.popup__close');
@@ -16,9 +15,8 @@ const cardContainer = document.querySelector('.elements');
 const namePlaceInput = document.querySelector('.popup__item_title_input');
 const linkPlaceInput = document.querySelector('.popup__item_place_input');
 const saveAddBtn = popupAddForm.querySelector('.popup__submit');
-const imageSrc = document.querySelector('.element__image');  //Это картинка при тыке на которую надо развернуть ее на весь экран
-const popupBigImage = popupLarge.querySelector('.popup__image'); //Это картинка внутри попапа
-
+const imageSrc = document.querySelector('.element__image');
+const popupBigImage = popupLarge.querySelector('.popup__image');
 const initialCards = [
   {
     name: 'Архыз',
@@ -64,19 +62,19 @@ const handleLikedCard = (event) => {
 
 //Функция открыть-закрыть попап
 
-function openPopup(index) {
-  popup[index].classList.add('popup_opened');
+function openPopup(a) {
+  a.classList.add('popup_opened');
 }
 
-function closePopup(index) {
-  popup[index].classList.remove('popup_opened');
+function closePopup(a) {
+  a.classList.remove('popup_opened');
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopup(0);
+  closePopup(popupEditProfile);
 };
 
 editProfileBtn.addEventListener('click', function save() {
@@ -101,12 +99,11 @@ const generateCard = (dataCard) => {
   likeBtn.addEventListener('click', handleLikedCard);
 
   const openBigImage = () => {
-    openPopup(2);
+    openPopup(popupLarge);
     popupBigImage.src = placeImg.src;
     popupBigImage.alt = dataCard.name;
   };
   placeImg.addEventListener('click', openBigImage);
-  popupImgCloseBtn.addEventListener('click', closePopup(2));
 
   return newCard;
 };
@@ -128,16 +125,16 @@ initialCards.forEach((dataCard) => {
 
 //Открыть-закрыть попап слушатели + сохранение результата
 
-popupAddForm.addEventListener("submit", handleSubmitAddForm);
+popupAddForm.addEventListener('submit', handleSubmitAddForm);
+
+addButton.addEventListener('click', () => { openPopup(popupAddForm) });
+popupAddCloseBtn.addEventListener('click', () => { closePopup(popupAddForm) });
 
 formProfileContainer.addEventListener('submit', formSubmitHandler);
 
-popupEditCloseBtn.addEventListener('click', closePopup(0));
+editProfileBtn.addEventListener('click', () => { openPopup(popupEditProfile) });
+popupEditCloseBtn.addEventListener('click', () => { closePopup(popupEditProfile) });
 
-popupAddCloseBtn.addEventListener('click', closePopup(1));
+saveAddBtn.addEventListener('click', () => { closePopup(popupAddForm) });
 
-addButton.addEventListener('click', openPopup(1));
-
-saveAddBtn.addEventListener('click', closePopup(1));
-
-editProfileBtn.addEventListener('click', openPopup(0));
+popupImgCloseBtn.addEventListener('click', () => { closePopup(popupLarge) });
