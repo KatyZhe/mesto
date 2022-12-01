@@ -1,5 +1,4 @@
-const popupElem = document.querySelectorAll('.popup');
-const editProfileBtn = document.querySelector('.profile__edit-button');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_profile');
 const addPlacePopup = document.querySelector('.popup_addplace');
 const popupLarge = document.querySelector('.popup_large-img');
@@ -65,23 +64,32 @@ const handleLikedCard = (event) => {
 
 //Функция открыть-закрыть попап
 
-function openPopup(a) {
-  a.classList.add('popup_opened');
-  a.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-  closePopup(a);
-  }
-  });
-  }
-
-function closePopup(a) {
-  a.classList.remove('popup_opened');
-  a.removeEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-  closePopup(a);
+const closePopupOverlay = (event) => {
+  const isOverlay = event.target.classList.contains('popup_opened');
+  if (isOverlay) {
+    closePopup(event.currentTarget);
     }
-  });
-}
+};
+
+const closePopupEsc = (event) => {
+  const isEsc = (event.key === 'Escape');
+  if (isEsc) {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
+};
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  popup.addEventListener('click', closePopupOverlay);
+  document.addEventListener('keydown', closePopupEsc);
+};
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
+};
 
 function formEditHandler(evt) {
   evt.preventDefault();
@@ -90,7 +98,7 @@ function formEditHandler(evt) {
   closePopup(popupEditProfile);
 };
 
-editProfileBtn.addEventListener('click', function save() {
+buttonEditProfile.addEventListener('click', function save() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 });
@@ -145,15 +153,7 @@ popupAddCloseBtn.addEventListener('click', () => { closePopup(addPlacePopup) });
 
 formProfileContainer.addEventListener('submit', formEditHandler);
 
-editProfileBtn.addEventListener('click', () => { openPopup(popupEditProfile) });
+buttonEditProfile.addEventListener('click', () => { openPopup(popupEditProfile) });
 popupEditCloseBtn.addEventListener('click', () => { closePopup(popupEditProfile) });
 
 popupImgCloseBtn.addEventListener('click', () => { closePopup(popupLarge) });
-
-window.onkeydown = function(event) {
-  if (event.key == "Escape") {
-    closePopup(popupEditProfile);
-    closePopup(addPlacePopup);
-    closePopup(popupLarge);
-  }
-};
