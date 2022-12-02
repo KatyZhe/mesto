@@ -134,6 +134,7 @@ const handleSubmitAddForm = (event) => {
   renderCard({ name: namePlaceInput.value, link: linkPlaceInput.value });
   formPlaceContainer.reset();
   closePopup(addPlacePopup);
+  disabledButtonState();
 };
 
 const renderCard = (dataCard) => {
