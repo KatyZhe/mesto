@@ -1,9 +1,9 @@
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_profile');
-const addPlacePopup = document.querySelector('.popup_addplace');
+const placeAddPopup = document.querySelector('.popup_addplace');
 const popupLarge = document.querySelector('.popup_large-img');
 const popupEditCloseBtn = popupEditProfile.querySelector('.popup__close');
-const popupAddCloseBtn = addPlacePopup.querySelector('.popup__close');
+const popupAddCloseBtn = placeAddPopup.querySelector('.popup__close');
 const popupImgCloseBtn = popupLarge.querySelector('.popup__close');
 const formProfileContainer = document.querySelector('.popup__profile-form');
 const formPlaceContainer = document.querySelector('.popup__place-form');
@@ -11,11 +11,11 @@ const nameProfile = document.querySelector('.profile__user-name');
 const jobProfile = document.querySelector('.profile__user-info');
 const nameInput = document.querySelector('.popup__item_name_input');
 const jobInput = document.querySelector('.popup__item_job_input');
-const addButton = document.querySelector('.profile__add-button');
+const buttonAdd = document.querySelector('.profile__add-button');
 const cardContainer = document.querySelector('.elements');
 const namePlaceInput = document.querySelector('.popup__item_title_input');
 const linkPlaceInput = document.querySelector('.popup__item_place_input');
-const saveAddBtn = addPlacePopup.querySelector('.popup__button');
+const buttonSubmitPlace = placeAddPopup.querySelector('.popup__button');
 const imageSrc = document.querySelector('.element__image');
 const popupBigImage = popupLarge.querySelector('.popup__image');
 const formInput = document.querySelectorAll('.popup__item');
@@ -133,8 +133,7 @@ const handleSubmitAddForm = (event) => {
   event.preventDefault();
   renderCard({ name: namePlaceInput.value, link: linkPlaceInput.value });
   formPlaceContainer.reset();
-  closePopup(addPlacePopup);
-  disabledButtonState(validationSettings);
+  closePopup(placeAddPopup);
 };
 
 const renderCard = (dataCard) => {
@@ -149,8 +148,8 @@ initialCards.forEach((dataCard) => {
 
 formPlaceContainer.addEventListener('submit', handleSubmitAddForm);
 
-addButton.addEventListener('click', () => { openPopup(addPlacePopup) });
-popupAddCloseBtn.addEventListener('click', () => { closePopup(addPlacePopup) });
+buttonAdd.addEventListener('click', () => { openPopup(placeAddPopup) });
+popupAddCloseBtn.addEventListener('click', () => { closePopup(placeAddPopup) });
 
 formProfileContainer.addEventListener('submit', formEditHandler);
 
