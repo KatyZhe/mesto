@@ -14,34 +14,8 @@ const jobInput = document.querySelector('.popup__item_job_input');
 const buttonAdd = document.querySelector('.profile__add-button');
 export const namePlaceInput = document.querySelector('.popup__item_title_input');
 export const linkPlaceInput = document.querySelector('.popup__item_place_input');
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-import validationSettings from "./settings.js";
+import { validationSettings, initialCards } from "./constants.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
@@ -74,6 +48,13 @@ export const closePopup = (popup) => {
   document.removeEventListener('keydown', closePopupEsc);
 };
 
+function handleOpenPopup(name, link) {
+  document.querySelector('.popup__image').src = link;
+  this._element.querySelector('.element__image').alt = name;
+  document.querySelector('.popup__caption').textContent = name;
+  openPopup(popupLarge);
+};
+
 function formEditHandler(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
@@ -86,20 +67,20 @@ buttonEditProfile.addEventListener('click', function save() {
   jobInput.value = jobProfile.textContent;
 });
 
-initialCards.forEach((data) => {
-  const card = new Card(data);
-  const cardGenerate = card.generateCard();
+const createCard = (data, templateSelector, handleOpenPopup) => {
+  const card = new Card(data, templateSelector, handleOpenPopup);
+  document.querySelector('.elements').prepend(card.generateCard());
+};
 
-  document.querySelector('.elements').prepend(cardGenerate);
+initialCards.forEach((data) => {
+  createCard(data, '.additional_card', handleOpenPopup);
 });
 
 const handleSubmitAddForm = (event) => {
   event.preventDefault();
-  const card = new Card(
-    { name: namePlaceInput.value, link: linkPlaceInput.value },
-    '.element'
-  );
-  document.querySelector('.elements').prepend(card.generateCard());
+
+  createCard({ name: namePlaceInput.value, link: linkPlaceInput.value }, '.additional_card', handleOpenPopup);
+  
   formPlaceContainer.reset();
   closePopup(placeAddPopup);
 };

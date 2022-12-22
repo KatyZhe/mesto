@@ -1,30 +1,36 @@
-import { popupLarge, initialCards, openPopup, closePopup, formPlaceContainer, namePlaceInput, linkPlaceInput } from "./index.js";
-
 class Card {
-    constructor(data) {
+    constructor(data, templateSelector, handleOpenPopup) {
         this._name = data.name;
         this._link = data.link;
-        this._element = null;
-        this._remove = null;
-        this._like = null;
+        this._templateSelector = templateSelector;
+        this._handleOpenPopup = handleOpenPopup;
+    };
+
+    _setEventListeners() {
+        this._like.addEventListener('click', () => {
+            this._handleLikedCard();
+        });
+
+        this._remove.addEventListener('click', () => {
+            this._handleDeleteCard();
+        });
+
+        this._bigImage.addEventListener("click", () => {
+            this._handleOpenPopup(this._name, this._link);
+        });
     };
 
     _handleLikedCard() {
-        this._like = this._element.querySelector('.element__like');
-        this._like.addEventListener('click', () => {
-            this._like.classList.toggle('element_liked');
-        });
+        this._like.classList.toggle('element_liked');
     };
 
     _handleDeleteCard() {
-        this._remove = this._element.querySelector('.element__delete');
-        this._remove.addEventListener('click', () => {
-            this._remove.closest('.element').remove();
-        });
+        this._element.remove();
+        this._element = null;
     };
 
     _getTemplate() {
-        const cardTemplate = document.querySelector('#additional_card').content
+        const cardTemplate = document.querySelector(this._templateSelector).content
         .querySelector('.element')
         .cloneNode(true);
 
@@ -38,19 +44,13 @@ class Card {
         this._element.querySelector('.element__image').src = this._link;
         this._element.querySelector('.element__image').alt = this._name;
 
-        this._handleLikedCard();
-        this._handleDeleteCard();
-        this._openBigImage();
+        this._like = this._element.querySelector('.element__like');
+        this._remove = this._element.querySelector('.element__delete');
+        this._bigImage = this._element.querySelector('.element__image');
+
+        this._setEventListeners();
 
         return this._element;
-    };
-
-    _openBigImage() {
-        this._bigImage = this._element.querySelector('.element__image').addEventListener('click', () => {
-          openPopup(popupLarge);
-            document.querySelector('.popup__image').src = this._link;
-            this._element.querySelector('.element__image').alt = this._name;
-        });
     };
 };
 
