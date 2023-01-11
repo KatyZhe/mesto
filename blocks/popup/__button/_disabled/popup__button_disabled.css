@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .popup__button_disabled {
     background-color: #fff;
     font-family: 'Inter', Verdana, Tahoma, sans-serif;
@@ -8,4 +9,16 @@
     border: 1px solid #000;
     opacity: .2;
     pointer-events: none;
+=======
+.popup__button_disabled {
+    background-color: #fff;
+    font-family: 'Inter', Verdana, Tahoma, sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #000;
+    border-radius: 2px;
+    border: 1px solid #000;
+    opacity: .2;
+    pointer-events: none;
+>>>>>>> ee63ad367bf062f32314a1f7cbddcbb8fcca6d2e
   }

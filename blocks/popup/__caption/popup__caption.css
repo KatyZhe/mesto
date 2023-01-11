@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .popup__caption {
     font-family: Inter, Verdana, Tahoma, sans-serif;
     font-weight: 400;
@@ -5,4 +6,13 @@
     line-height: 15px;
     color: #fff;
     margin: 6px 0 0;
+=======
+.popup__caption {
+    font-family: Inter, Verdana, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #fff;
+    margin: 6px 0 0;
+>>>>>>> ee63ad367bf062f32314a1f7cbddcbb8fcca6d2e
   }
