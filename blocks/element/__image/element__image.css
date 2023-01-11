@@ -8,6 +8,7 @@
   overflow: hidden;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
+  color: #FFF;
 }
 
 .element__image:hover {
