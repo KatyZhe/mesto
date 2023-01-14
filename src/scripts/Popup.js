@@ -1,24 +1,23 @@
 class Popup {
     constructor(popup) {
         this._popup = document.querySelector(popup);
+        this._handleEscClose = this._handleEscClose.bind(this);
     };
 
     open() {
         this._popup.classList.add('popup_opened');
-        this._handleEscClose();
+        document.addEventListener('keydown', this._handleEscClose);
     };
 
     close() {
         this._popup.classList.remove('popup_opened');
-        this._handleEscClose();
+        document.removeEventListener('keydown', this._handleEscClose);
     };
 
     _handleEscClose() {
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                this.close();
-            }
-        })
+        if (event.key === 'Escape') {
+            this.close();
+        }
     };
 
     _closePopupOverlay(event) {

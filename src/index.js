@@ -4,20 +4,20 @@ import { validationSettings,
   buttonEditProfile,
   formProfileContainer,
   formPlaceContainer,
-  nameProfile,
+  nameInput,
   jobInput,
   buttonAdd,
-} from "../scripts/constants.js";
+} from "../src/scripts/constants.js";
 
-import '../pages/index.css';
+import '../src/pages/index.css';
 
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/FormValidator.js";
-import Section from "../scripts/Section.js";
-import Popup from "../scripts/Popup.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import UserInfo from "../scripts/UserInfo.js";
+import Card from "../src/scripts/Card.js";
+import FormValidator from "../src/scripts/FormValidator.js";
+import Section from "../src/scripts/Section.js";
+import Popup from "../src/scripts/Popup.js";
+import PopupWithImage from "../src/scripts/PopupWithImage.js";
+import PopupWithForm from "../src/scripts/PopupWithForm.js";
+import UserInfo from "../src/scripts/UserInfo.js";
 
 //создание карточки из класса Section
 
@@ -75,7 +75,7 @@ addNewPlace.setEventListeners();
 buttonEditProfile.addEventListener('click', () => {
   popupProfileEdit.open();
   const inputList = profileEdit.getUserInfo();
-  nameProfile.value = inputList.name;
+  nameInput.value = inputList.name;
   jobInput.value = inputList.job;
 });
 

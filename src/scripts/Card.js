@@ -40,13 +40,14 @@ class Card {
     generateCard() {
         this._element = this._getTemplate();
 
-        this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
-
         this._like = this._element.querySelector('.element__like');
         this._remove = this._element.querySelector('.element__delete');
         this._bigImage = this._element.querySelector('.element__image');
+        this._title = this._element.querySelector('.element__title');
+
+        this._title.textContent = this._name;
+        this._bigImage.src = this._link;
+        this._bigImage.alt = this._name;
 
         this._setEventListeners();
 
