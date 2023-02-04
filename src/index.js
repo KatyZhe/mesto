@@ -26,10 +26,10 @@ import PopupSubmitDeletion from "../src/scripts/PopupSubmitDeletion";
 //создание карточки из класса Section
 
 const cardList = new Section({
-  renderer: (item) => cardList.addItem(generateCard(item, '.additional_card'))
+  renderer: (item) => cardList.addItem(createNewCard(item, '.additional_card'))
 }, cardListSelector);
 
-function generateCard(item, template) {
+function createNewCard(item, template) {
   const card = new Card(item, userId, template, {
     handleOpenPopup: (name, link) => {
       openPopupImage.open(name, link);
@@ -40,7 +40,7 @@ function generateCard(item, template) {
       popupDeleteCard.callBackDeleteCard(() => {
         popupDeleteCard.changeBtnText(true);
         api.deleteCard(id).then(() => {
-            card.deleteCard();
+            card.handleDeleteCard();
           })
           .then(() => popupDeleteCard.close())
           .catch((err) => {
@@ -110,14 +110,15 @@ buttonEditProfile.addEventListener('click', () => {
 //Создание новой карточки юзером
 
 function createInstanceCard(name, link, templateSelector) {
-  return api.createCard({ name, link }, templateSelector)
+  return api.createCard({ name, link }, templateSelector);
 };
 
 const addNewPlace = new PopupWithForm('.popup_addplace', {
   submitForm: ({ inputplacename, inputplacelink }) => {
     addNewPlace.changeBtnText(true);
     createInstanceCard(inputplacename, inputplacelink, '.additional_card')
-      .then(() => {
+      .then((data) => {
+        cardList.addItem(createNewCard(data, '.additional_card'));
         addNewPlace.close();
       })
       .catch((err) => {
