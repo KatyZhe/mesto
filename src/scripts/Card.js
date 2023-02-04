@@ -1,18 +1,25 @@
 class Card {
-    constructor(data, templateSelector, { handleOpenPopup }) {
+    constructor( data, userId, templateSelector, { handleOpenPopup, sendIdCard, likeCard, dislikeCard }) {
         this._name = data.name;
         this._link = data.link;
+        this._userId = userId;
         this._templateSelector = templateSelector;
         this._handleOpenPopup = handleOpenPopup;
+        this._sendIdCard = sendIdCard;
+        this._item = data;
+        this._id = data._id;
+        this._likeCard = likeCard;
+        this._dislikeCard = dislikeCard;
+        this._arrayCardLikes = data.likes;
     };
 
     _setEventListeners() {
         this._like.addEventListener('click', () => {
-            this._handleLikedCard();
+            this._handleLikeCard();
         });
 
         this._remove.addEventListener('click', () => {
-            this._handleDeleteCard();
+            this._sendIdCard(this._id);
         });
 
         this._bigImage.addEventListener("click", () => {
@@ -20,9 +27,35 @@ class Card {
         });
     };
 
-    _handleLikedCard() {
-        this._like.classList.toggle('element_liked');
-    };
+    _handleLikeCard() {
+        if (this.isLiked) {
+            this._dislikeCard(this._id);
+        } else {
+            this._likeCard(this._id);
+        }
+      }
+    
+    likeButton() {
+        this.isLiked = true;
+        this._like.classList.add('element_liked');
+    }
+    
+    dislikeButton() {
+        this.isLiked = false;
+        this._like.classList.remove('element_liked');
+    }
+
+    countLike(likesQuantity) {
+        this._amountLike.textContent = likesQuantity;
+    }
+
+    _showMyLike() {
+        if (this._arrayCardLikes.some((like) => like._id == this._userId)) {
+          this.likeButton();
+        } else {
+          this.dislikeButton();
+        }
+    }
 
     _handleDeleteCard() {
         this._element.remove();
@@ -37,6 +70,14 @@ class Card {
     return cardTemplate;
     };
 
+    _showBasket() {
+        if (this._item.owner._id === 'de2f2b270cb8d68c48570ad2') {
+            this._remove.style.display = 'block';
+        } else {
+            this._remove.style.display = 'none';
+        }
+    };
+
     generateCard() {
         this._element = this._getTemplate();
 
@@ -44,14 +85,20 @@ class Card {
         this._remove = this._element.querySelector('.element__delete');
         this._bigImage = this._element.querySelector('.element__image');
         this._title = this._element.querySelector('.element__title');
+        this._amountLike = this._element.querySelector('.element__likes-count');
 
         this._title.textContent = this._name;
         this._bigImage.src = this._link;
         this._bigImage.alt = this._name;
-
+        this._amountLike.textContent = this._arrayCardLikes.length;
+        
         this._setEventListeners();
+        this._showMyLike();
+
+        this._showBasket(); //корзинка только на своих карточках
 
         return this._element;
+
     };
 };
 

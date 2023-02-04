@@ -9,13 +9,13 @@
 
 <body class="page">
   <header class="header">
-    <img src="<%=require('../src/images/header__logo.svg')%>" class="header__logo" alt="Место">   
+    <img src="<%=require('../src/images/header__logo.svg')%>" class="header__logo" alt="Место"> 
   </header>
 
   <main>
     <section class="profile">
       <div class="profile__user">
-        <img src="<%=require('../src/images/profile-avatar.svg')%>" class="profile__avatar" alt="аватар">
+        <button class="profile__edit-avatar" type="button" aria-label="Изменить аватар"><img src="<%=require('../src/images/profile-avatar.svg')%>" class="profile__avatar" alt="аватар"></button>
         <div class="profile__info">
           <div class="profile__name">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
@@ -35,21 +35,25 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
+  <!-- Попап изменения данных профиля -->
+
   <div class="popup popup_profile">
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <form class="popup__form popup__profile-form" name="form" novalidate>
         <fieldset class="popup__input-container">
           <h2 class="popup__heading">Редактировать профиль</h2>
-          <input type="text" class="popup__item popup__item_name_input" name="inputname" placeholder="Имя" minlength="2" maxlength="40" id="popup__name-input" required>
+          <input type="text" class="popup__item popup__item_name_input" name="name" placeholder="Имя" minlength="2" maxlength="40" id="popup__name-input" required>
           <span class="popup__span popup__name-input-error"></span>
-          <input type="text" class="popup__item popup__item_job_input" name="inputjob" placeholder="О себе" minlength="2" maxlength="200" id="popup__job-input" required>
+          <input type="text" class="popup__item popup__item_job_input" name="about" placeholder="О себе" minlength="2" maxlength="200" id="popup__job-input" required>
           <span class="popup__span popup__job-input-error"></span>
         </fieldset>
         <button type="submit" class="popup__input-error popup__button">Сохранить</button>
       </form>
     </div>
   </div>
+
+  <!-- Попап изменения добавления места -->
 
   <div class="popup popup_addplace">
     <div class="popup__container">
@@ -69,6 +73,8 @@
     </div>
   </div>
 
+  <!-- Попап увеличенного изображения -->
+
   <div class="popup popup_large-img">
     <div class="popup__container-image">
       <button type="button" class="popup__close"></button>
@@ -79,18 +85,48 @@
     </div>
   </div>
 
+  <!-- Попап обновить аватар -->
+
+  <div class="popup popup_avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <form class="popup__form popup__avatar-form" name="form" novalidate>
+      <fieldset class="popup__input-container">
+        <h2 class="popup__heading-avatar">Обновить аватар</h2>
+        <input type="url" class="popup__item popup__avatar_input" id="popup__avatar" name="avatar"
+            placeholder="Ссылка на аватар" required>
+            <span class="popup__span popup__avatar-error"></span>
+      </fieldset>
+      <button type="submit" class="popup__button popup__button_disabled" disabled>Сохранить</button>
+    </form>
+    </div>
+  </div>
+
+  <!-- Попап подтверждения удаления карточки -->
+
+  <div class="popup popup_sure">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__heading-sure">Вы уверены?</h2>
+      <button type="submit" class="popup__button">Да</button>
+    </div>
+  </div>
+
+  <!-- Темплейт карточки -->
+
   <template class="additional_card" id="additional_card">
     <li class="element">
       <img src="#" class="element__image" alt="фотография места">
       <div class="element__text">
         <h2 class="element__title"></h2>
-        <button class="element__like" type="button" aria-label="Нравится"></button>
+        <div class="element__like-block">
+          <button class="element__like" type="button" aria-label="Нравится"></button>
+          <span class="element__likes-count"></span>
+        </div>
         <button type="button" class="element__delete" aria-label="Закрыть"></button>
       </div>
     </li>
   </template>
-
-  <!--<script type="module" src="./scripts/index.js"></script> -->
 
 </body>
 

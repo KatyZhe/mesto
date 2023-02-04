@@ -7,6 +7,8 @@ export const popupAddCloseBtn = placeAddPopup.querySelector('.popup__close');
 export const popupImgCloseBtn = popupLarge.querySelector('.popup__close');
 export const formProfileContainer = document.querySelector('.popup__profile-form');
 export const formPlaceContainer = document.querySelector('.popup__place-form');
+export const formAvatarContainer = document.querySelector('.popup__avatar-form');
+export const popupSubmitDelete = document.querySelector('.popup_sure');
 export const nameProfile = document.querySelector('.profile__user-name');
 export const jobProfile = document.querySelector('.profile__user-info');
 export const nameInput = document.querySelector('.popup__item_name_input');
@@ -15,6 +17,8 @@ export const buttonAdd = document.querySelector('.profile__add-button');
 export const namePlaceInput = document.querySelector('.popup__item_title_input');
 export const linkPlaceInput = document.querySelector('.popup__item_place_input');
 export const cardListSelector = '.elements';
+export const buttonEditAvatar = document.querySelector('.profile__edit-avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
 
 const validationSettings = {
     formSelector: '.popup__form',
@@ -25,31 +29,4 @@ const validationSettings = {
     errorClass: 'popup__span_active'
 };
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-export { validationSettings, initialCards };
+export { validationSettings };
