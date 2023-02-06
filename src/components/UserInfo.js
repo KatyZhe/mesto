@@ -10,7 +10,7 @@ class UserInfo {
     getUserInfo() {
         this._userInfoServer = {
             name: this._name.textContent,
-            job: this._job.textContent
+            about: this._job.textContent
         };
 
         return this._userInfoServer;

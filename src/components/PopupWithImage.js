@@ -13,6 +13,13 @@ class PopupWithImage extends Popup {
         this._image.src = link;
         this._image.alt = name;
     };
+
+    close() {
+        this._title.textContent = '';
+        this._image.src = '';
+        this._image.alt = '';
+        super.close();
+    };
 };
 
 export default PopupWithImage;

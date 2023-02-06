@@ -14,8 +14,8 @@ class Popup {
         document.removeEventListener('keydown', this._handleEscClose);
     };
 
-    _handleEscClose() {
-        if (event.key === 'Escape') {
+    _handleEscClose(evt) {
+        if (evt.key === 'Escape') {
             this.close();
         }
     };
@@ -29,7 +29,7 @@ class Popup {
 
     setEventListeners() {
         this._popup.querySelector('.popup__close').addEventListener('click', () => this.close());
-        this._popup.addEventListener('click', (event) => this._closePopupOverlay(event));
+        this._popup.addEventListener('mousedown', (event) => this._closePopupOverlay(event));
     };
 }
 

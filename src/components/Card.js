@@ -71,7 +71,7 @@ class Card {
     };
 
     _showBasket() {
-        if (this._item.owner._id === 'de2f2b270cb8d68c48570ad2') {
+        if (this._item.owner._id === this._userId) {
             this._remove.style.display = 'block';
         } else {
             this._remove.style.display = 'none';

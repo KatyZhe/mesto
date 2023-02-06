@@ -5,9 +5,11 @@ export const popupLarge = document.querySelector('.popup_large-img');
 export const popupEditCloseBtn = popupEditProfile.querySelector('.popup__close');
 export const popupAddCloseBtn = placeAddPopup.querySelector('.popup__close');
 export const popupImgCloseBtn = popupLarge.querySelector('.popup__close');
-export const formProfileContainer = document.querySelector('.popup__profile-form');
-export const formPlaceContainer = document.querySelector('.popup__place-form');
-export const formAvatarContainer = document.querySelector('.popup__avatar-form');
+
+export const formProfileContainer = document.forms['profileform'];
+export const formPlaceContainer = document.forms['placeform'];
+export const formAvatarContainer = document.forms['avatarform'];
+
 export const popupSubmitDelete = document.querySelector('.popup_sure');
 export const nameProfile = document.querySelector('.profile__user-name');
 export const jobProfile = document.querySelector('.profile__user-info');

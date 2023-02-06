@@ -1,4 +1,4 @@
-import Popup from '../scripts/Popup.js';
+import Popup from '../components/Popup.js';
 
 class PopupSubmitDeletion extends Popup {
     constructor(popup) {
@@ -7,7 +7,7 @@ class PopupSubmitDeletion extends Popup {
         this._buttonText = this._submitDeleteBtn.textContent;
     }
 
-    getId(id) {
+    setId(id) {
         this.idCardDelete = id;
     }
 
@@ -23,16 +23,11 @@ class PopupSubmitDeletion extends Popup {
         }
       }
 
-    open() {
-        super.open();
-    }
-
     setEventListeners() {
         super.setEventListeners();
         
         this._submitDeleteBtn.addEventListener('click', () => {
             this._callBackDeleteCard();
-            this.close();
         });
     }
 }

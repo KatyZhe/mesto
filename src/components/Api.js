@@ -5,17 +5,19 @@ class Api {
       this._url = url;
       this._headers = headers;
     }
+
+    _checkResponse(res) {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
   
     getInitialCards() {
       return fetch(`${this._url}/cards`, {
       headers: this._headers
       })
-      .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      .then(this._checkResponse);
     }
 
     createCard(data) {
@@ -24,11 +26,7 @@ class Api {
           method: 'POST',
           body: JSON.stringify(data)
       })
-      .then((res) => {
-          if(res.ok) {
-              return res.json()
-          }
-      });
+      .then(this._checkResponse);
     }
 
     deleteCard(id) {
@@ -36,22 +34,15 @@ class Api {
           headers: this._headers,
           method: 'DELETE',
       })
-      .then((res) => {
-          if(res.ok) {
-            return res.json();
-          }
-      });
+      .then(this._checkResponse);
     }
 
     getUserInfo() {
       return fetch(`${this._url}/users/me`, {
         headers: this._headers,
         method: 'GET'
-      }).then((res) => {
-        if(res.ok) {
-          return res.json();
-        }
       })
+      .then(this._checkResponse);
     }
 
     changeUserInfo(data) {
@@ -59,11 +50,8 @@ class Api {
         headers: this._headers,
         method: 'PATCH',
         body: JSON.stringify(data)
-      }).then((res) => {
-        if(res.ok) {
-          return res.json();
-        }
       })
+      .then(this._checkResponse);
     }
 
     changeAvatar(data) {
@@ -71,33 +59,24 @@ class Api {
         headers: this._headers,
         method: 'PATCH',
         body: JSON.stringify(data)
-      }).then((res) => {
-        if(res.ok) {
-          return res.json();
-        }
       })
+      .then(this._checkResponse);
     }
 
     likeCard(id) {
       return fetch(`${this._url}/cards/${id}//likes`, {
         method: 'PUT',
         headers: this._headers,
-      }).then((result) => {
-        if (result.ok) {
-          return result.json();
-        }
-      });
+      })
+      .then(this._checkResponse);
     }
   
     dislikeCard(id) {
       return fetch(`${this._url}/cards/${id}/likes`, {
         method: 'DeLETE',
         headers: this._headers,
-      }).then((result) => {
-        if (result.ok) {
-          return result.json();
-        }
-      });
+      })
+      .then(this._checkResponse);
     }
 }
   
