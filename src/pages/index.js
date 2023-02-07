@@ -1,4 +1,7 @@
-import { validationSettings, 
+// СПАСИБО БОЛЬШОЕ! :)
+
+import {
+  validationSettings,
   cardListSelector,
   buttonEditProfile,
   formProfileContainer,
@@ -37,15 +40,14 @@ function createNewCard(item, template) {
       popupDeleteCard.callBackDeleteCard(() => {
         popupDeleteCard.changeBtnText(true);
         api.deleteCard(id).then(() => {
-            card.handleDeleteCard();
-          })
+          card.handleDeleteCard();
+        })
           .then(() => popupDeleteCard.close())
           .catch((err) => {
             console.log(`Ошибка: ${err}.`);
           })
           .finally(() => {
             popupDeleteCard.changeBtnText(false);
-            popupDeleteCard.close();
           });
       })
     },
@@ -54,18 +56,18 @@ function createNewCard(item, template) {
         card.likeButton();
         card.countLike(data.likes.length);
       })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}.`);
-      });
+        .catch((err) => {
+          console.log(`Ошибка: ${err}.`);
+        });
     },
     dislikeCard: (id) => {
       api.dislikeCard(id).then((data) => {
         card.dislikeButton();
         card.countLike(data.likes.length);
       })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}.`);
-      });
+        .catch((err) => {
+          console.log(`Ошибка: ${err}.`);
+        });
     }
   });
   const addCard = card.generateCard();
@@ -83,24 +85,24 @@ popupDeleteCard.setEventListeners();
 const openPopupImage = new PopupWithImage('.popup_large-img');
 openPopupImage.setEventListeners();
 openPopupImage.close();
- 
+
 // Изменение данных о пользователе
 
-const profileEdit = new UserInfo({ name: '.profile__user-name' , job: '.profile__user-info', avatar: '.profile__avatar' });
+const profileEdit = new UserInfo({ name: '.profile__user-name', job: '.profile__user-info', avatar: '.profile__avatar' });
 
-const popupProfileEdit = new PopupWithForm('.popup_profile', { 
+const popupProfileEdit = new PopupWithForm('.popup_profile', {
   submitForm: (inputObj) => {
     popupProfileEdit.changeBtnText(true);
     return api.changeUserInfo(inputObj)
-    .then((data) => {
-      profileEdit.setUserProfile(data);
-    }).catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      popupProfileEdit.changeBtnText(false);
-      popupProfileEdit.close();
-    });
+      .then((data) => {
+        profileEdit.setUserProfile(data);
+        popupProfileEdit.close();
+      }).catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupProfileEdit.changeBtnText(false);
+      });
   }
 });
 
@@ -110,7 +112,7 @@ buttonEditProfile.addEventListener('click', () => {
   popupProfileEdit.open();
   const inputList = profileEdit.getUserInfo();
   popupProfileEdit.setInputValues(inputList);
-  //popupProfileEdit.resetValidation();
+  formValidators['profileform'].resetValidation();
 });
 
 //Создание новой карточки юзером
@@ -125,13 +127,13 @@ const addNewPlace = new PopupWithForm('.popup_addplace', {
     createInstanceCard(inputplacename, inputplacelink, '.additional_card')
       .then((data) => {
         cardList.addItem(createNewCard(data, '.additional_card'));
+        addNewPlace.close();
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
         addNewPlace.changeBtnText(false);
-        addNewPlace.close();
       });
   }
 });
@@ -140,7 +142,7 @@ addNewPlace.setEventListeners();
 
 buttonAdd.addEventListener('click', () => {
   addNewPlace.open();
-  //addNewPlace.resetValidation();
+  formValidators['placeform'].resetValidation();
 });
 
 //Попап изменения аватара
@@ -149,16 +151,16 @@ const editAvatar = new PopupWithForm('.popup_avatar', {
   submitForm: (inputObj) => {
     editAvatar.changeBtnText(true);
     return api.changeAvatar(inputObj)
-    .then((data) => {
-      profileEdit.setUserAvatar(data);
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => {
-      editAvatar.changeBtnText(false);
-      editAvatar.close();
-    });
+      .then((data) => {
+        profileEdit.setUserAvatar(data);
+        editAvatar.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editAvatar.changeBtnText(false);
+      });
   }
 });
 
@@ -166,45 +168,28 @@ editAvatar.setEventListeners();
 
 buttonEditAvatar.addEventListener('click', () => {
   editAvatar.open();
-  //editAvatar.resetValidation();
+  formValidators['avatarform'].resetValidation();
 });
 
 //Валидация попапов
 
-//1 добавление карточки
+const formValidators = {};
 
-//ПОКА НЕ ПОЧИНИЛА ТАКУЮ ВАЛИДАЦИЮ, НО Я ЕЩЕ С НЕЙ ПОКОВЫРЯЮСЬ :)
+// Включение валидации
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement); //тут из-за неправильного порядка аргументов не работало)))) долго я искала причину))))
+    // получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name');
 
-// const formValidators = {}
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
 
-// // Включение валидации
-// const enableValidation = (validationSettings) => {
-//   const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
-//   formList.forEach((formElement) => {
-//     const validator = new FormValidator(formElement, validationSettings)
-//   // получаем данные из атрибута `name` у формы
-//     const formName = formElement.getAttribute('name')
-
-//   // вот тут в объект записываем под именем формы
-//     formValidators[formName] = validator;
-//     validator.enableValidation();
-//   });
-// };
-
-// enableValidation(validationSettings);
-
-const validationFormAddCard = new FormValidator(validationSettings, formPlaceContainer);
-validationFormAddCard.enableValidation();
-
-//2 изменение профиля
-
-const validationFormEditProfile = new FormValidator(validationSettings, formProfileContainer);
-validationFormEditProfile.enableValidation();
-
-//3 изменение аватара
-
-const validationFormAvatar = new FormValidator(validationSettings, formAvatarContainer);
-validationFormAvatar.enableValidation();
+enableValidation(validationSettings);
 
 //Отрисовываем карточки из массива с сервера
 
